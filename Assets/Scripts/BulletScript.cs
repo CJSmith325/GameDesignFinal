@@ -15,6 +15,8 @@ public class BulletScript : MonoBehaviour
     public float bulletForce = 20f;
 
     public float bulletDamage = 10f;
+
+    private float bulletLife = 1.5f;
     // Update is called once per frame
     void Update()
     {
@@ -39,5 +41,7 @@ public class BulletScript : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+
+        Destroy(bullet, bulletLife);
     }
 }
