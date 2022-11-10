@@ -12,6 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public Camera cam;
     public Vector2 mousePos;
 
+    public static PlayerMovement instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     void Update()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
