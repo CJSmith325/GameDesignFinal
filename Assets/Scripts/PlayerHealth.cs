@@ -21,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
     // number of times to flash in invulnerabilty coroutine
     private float numberFlashes = 3f;
 
+    public static float secondStore;
+    public static float minuteStore;
+    public static float hourStore;
     private void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
@@ -51,6 +54,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (playerHealth <= 0)
         {
+            secondStore = GameTimer.secondsCount;
+            minuteStore = GameTimer.minuteCount;
+            hourStore = GameTimer.hourCount;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
