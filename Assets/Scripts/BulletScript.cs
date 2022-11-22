@@ -8,7 +8,7 @@ public class BulletScript : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float attackCooldown;
-    public float attackChannelMaxTime = 10f;
+    public float attackChannelMaxTime = 5f;
     public float attackChannelTime = 0f;
     public Slider channelSlider;
 
@@ -18,34 +18,23 @@ public class BulletScript : MonoBehaviour
 
     private float bulletLife = 5f;
 
+    public SpriteRenderer spriteRend;
+    public float spriteChange;
+
     bool newPress = false;
     // Update is called once per frame
     void Update()
     {
-        //old shooting system
         channelSlider.value = attackChannelTime;
-        /*if (Input.GetButton("Fire1"))
-        {
-            attackChannelTime += (Time.deltaTime * 5);
-            if (attackChannelTime > attackChannelMaxTime)
-            {
-                //if the channel is completed, shoot, and reset the channel
-                Shoot();
-                attackChannelTime = 0;
-            }
-        }
-        else
-        {
-            attackChannelTime = 0;
-        }*/
-
-        //new system
+   
         if (Input.GetButtonDown("Fire1"))//signals the start of a channel
         {
             newPress = true;
         }
         if (Input.GetButton("Fire1") && newPress)//building up the channel
         {
+            //spriteChange = attackChannelTime * 51f;
+            spriteRend.color = new Color(255, 0, 0, 255f);
             attackChannelTime += Time.deltaTime * 5;
             if (attackChannelTime > attackChannelMaxTime)
             {
@@ -60,6 +49,7 @@ public class BulletScript : MonoBehaviour
     void Shoot(float power)
     {
         newPress = false;
+        spriteRend.color = new Color(0, 255, 255, 255f);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * power * 10, ForceMode2D.Impulse);

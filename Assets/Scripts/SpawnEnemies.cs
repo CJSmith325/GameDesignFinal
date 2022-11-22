@@ -20,6 +20,7 @@ public class SpawnEnemies : MonoBehaviour
             if (Time.time > nextSpawn)
             {
                 nextSpawn = Time.time + spawnRate;
+                spawnRate = spawnRate * .95f;
                 PickSpawn();
                 Instantiate(enemy1, spawnPoint, Quaternion.identity);
             }
