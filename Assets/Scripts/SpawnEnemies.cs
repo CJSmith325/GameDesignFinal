@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
+    public static SpawnEnemies enemySpawnerScript;
     public GameObject enemy1;
     public Transform playerLocation;
     float randX;
@@ -12,6 +13,12 @@ public class SpawnEnemies : MonoBehaviour
     Vector2 spawnPoint;
     public float spawnRate = 1f;
     float nextSpawn = 0.0f;
+    public int SpawnQueue;
+
+    private void Awake()
+    {
+        enemySpawnerScript = this;
+    }
 
     void Update()
     {
@@ -21,8 +28,13 @@ public class SpawnEnemies : MonoBehaviour
             {
                 nextSpawn = Time.time + spawnRate;
                 spawnRate = spawnRate * .95f;
+                SpawnQueue += 1;
+            }
+            while(SpawnQueue > 0)
+            {
                 PickSpawn();
                 Instantiate(enemy1, spawnPoint, Quaternion.identity);
+                SpawnQueue -= 1;
             }
         }
     }

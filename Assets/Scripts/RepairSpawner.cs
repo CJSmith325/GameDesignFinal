@@ -10,9 +10,9 @@ public class RepairSpawner : MonoBehaviour
     float randY;
     public int randQuadrant;//used to determine whether they'll spawn from in terms of NESW
     Vector2 spawnPoint;
-    public float spawnRate = .05f;
+    public float spawnRate = 1f;
     float nextSpawn = 0.0f;
-    public int enemyQueue;
+    public int repairQueue;
 
     void Update()
     {
@@ -22,14 +22,14 @@ public class RepairSpawner : MonoBehaviour
             if (Time.time > nextSpawn)
             {
                 nextSpawn = Time.time + spawnRate;
-                enemyQueue = enemyQueue + 1;
-                Instantiate(repairKit, spawnPoint, Quaternion.identity);
+                repairQueue++;
             }
         }
-        while(enemyQueue > 0)
+        while(repairQueue > 0)
         {
             PickSpawn();
-            enemyQueue = enemyQueue - 1;
+            Instantiate(repairKit, spawnPoint, Quaternion.identity);
+            repairQueue--;
         }
     }
 

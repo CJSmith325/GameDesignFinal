@@ -15,7 +15,6 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene(name);
         Time.timeScale = 1f;
-        PlayerHealth.playerHealth = 3;
     }
 
 

@@ -8,18 +8,15 @@ public class PlayerHealth : MonoBehaviour
 {
     // couroutine duration timer
     private float iFrameDuration = 3f;
-    // timer to hard code a stop to enemy attacks, not working at all
-    private float enemyAtkTimer = 3f;
     // gets sprite renderer of playersprite
     private SpriteRenderer playerSprite;
-    // comparison variable to detect enemy damage
-    private float playerHealthCompare = 3f;
     // static float variable for player health
-    public static float playerHealth = 3;
+    public int playerHealth = 3;
+    public int playerMaxHealth = 3;
     // text component for health
-    public Text currentHealth;
+    public Text healthText;
     // number of times to flash in invulnerabilty coroutine
-    private float numberFlashes = 3f;
+    private int numberFlashes = 3;
 
     public static float secondStore;
     public static float minuteStore;
@@ -28,10 +25,13 @@ public class PlayerHealth : MonoBehaviour
     {
         playerSprite = GetComponent<SpriteRenderer>();
     }
-
+    private void Awake()
+    {
+        playerHealth = 3;
+    }
     private IEnumerator Invulnerability ()
     {
-        Physics2D.IgnoreLayerCollision(4, 2, true);
+        Physics2D.IgnoreLayerCollision(9, 7, true);
         for (int i = 0; i < numberFlashes; i++)
         {
             playerSprite.color = new Color(1, 0, 0, 0.5f);
@@ -40,40 +40,35 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(iFrameDuration / (numberFlashes * 2));
 
         }
-        Physics2D.IgnoreLayerCollision(4, 2, true);
+        Physics2D.IgnoreLayerCollision(9, 7, false);
     }
-
     private void Update()
     {
-        if (playerHealthCompare > playerHealth)
-        {
-            StartCoroutine(Invulnerability());
-            playerHealthCompare = playerHealth;
-            
-        }
-
-        if (playerHealth <= 0)
-        {
-            secondStore = GameTimer.secondsCount;
-            minuteStore = GameTimer.minuteCount;
-            hourStore = GameTimer.hourCount;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        currentHealth.text = playerHealth.ToString();
-
-        enemyAtkTimer -= Time.deltaTime;
+        healthText.text = playerHealth.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (enemyAtkTimer <= 0)
+        //enemy collision
+        if (collision.gameObject.CompareTag("Enemy") == true)
         {
-            if (collision.gameObject.CompareTag("Enemy") == true)
+            playerHealth -= 1;
+            if (playerHealth <= 0)
             {
-                playerHealth -= 1;
-                enemyAtkTimer = 3;
+                secondStore = GameTimer.secondsCount;
+                minuteStore = GameTimer.minuteCount;
+                hourStore = GameTimer.hourCount;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+            else
+            StartCoroutine(Invulnerability());
+        }
+        //Repair kit collision
+        if (collision.gameObject.CompareTag("Repair"))
+        {
+            if (playerHealth < playerMaxHealth)
+                playerHealth += 1;
+            Destroy(collision.gameObject);
         }
     }
 }

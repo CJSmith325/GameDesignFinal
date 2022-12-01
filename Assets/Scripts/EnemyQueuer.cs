@@ -18,6 +18,11 @@ public class EnemyQueuer : MonoBehaviour
     {
         Vector2 distanceVector = playerLocation.position - enemyLocation.position;
         distanceToPlayer = distanceVector.magnitude;
+        if (distanceToPlayer >= queueDistance)
+        {
+            SpawnEnemies.enemySpawnerScript.SpawnQueue += 1;
+            Destroy(gameObject);
+        }
     }
 }
 
