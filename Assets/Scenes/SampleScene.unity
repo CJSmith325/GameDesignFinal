@@ -1811,7 +1811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c476f473fcdd2ad4fb46e83766cd8768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: {fileID: 1764639777}
+  playerHealth: 3
+  playerMaxHealth: 3
+  healthText: {fileID: 1764639777}
 --- !u!1 &249439978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4429,7 +4431,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4485,8 +4487,9 @@ MonoBehaviour:
   repairKit: {fileID: 696845154815940144, guid: 90afcc4a64dafb04ba3c43c3c7136a9f, type: 3}
   playerLocation: {fileID: 245994026}
   randQuadrant: 0
-  spawnRate: 0.05
-  enemyQueue: 0
+  spawnRate: 5
+  repairQueue: 0
+  repairLengthTester: 0
 --- !u!1 &1337752737
 GameObject:
   m_ObjectHideFlags: 0

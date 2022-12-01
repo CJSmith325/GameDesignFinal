@@ -14,15 +14,28 @@ public class RepairSpawner : MonoBehaviour
     float nextSpawn = 0.0f;
     public int repairQueue;
 
+    public int repairLengthTester;
+
+    public static RepairSpawner repairSpawnerScript;
+
+    private void Awake()
+    {
+        repairSpawnerScript = this;
+    }
+
     void Update()
     {
         if (GameObject.Find("PlayerSprite") != null)
         {
-            
-            if (Time.time > nextSpawn)
+            GameObject[] repairList = GameObject.FindGameObjectsWithTag("Repair");
+            repairLengthTester = repairList.Length;
+            if (repairList.Length < 5)
             {
-                nextSpawn = Time.time + spawnRate;
-                repairQueue++;
+                if (Time.time > nextSpawn)
+                {
+                    nextSpawn = Time.time + spawnRate;
+                    repairQueue++;
+                }
             }
         }
         while(repairQueue > 0)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 696845154815940150}
   - component: {fileID: 696845154815940151}
   - component: {fileID: 7714906231642925823}
+  - component: {fileID: -5330137166689741197}
   m_Layer: 8
   m_Name: RepairKit
   m_TagString: Repair
@@ -109,3 +110,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.115641, y: 15.001465}
   m_EdgeRadius: 0
+--- !u!114 &-5330137166689741197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696845154815940144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42e794d61d79464a9d7ddc07062b514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromKits: 0
+  playerLocation: {fileID: 0}
+  queueDistance: 20
