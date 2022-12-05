@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     // public shake ienumerator object
     public CameraShake cameraShake;
     // couroutine duration timer
-    private float iFrameDuration = 3f;
+    private float iFrameDuration = 1f;
     // gets sprite renderer of playersprite
     private SpriteRenderer playerSprite;
     // static float variable for player health
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     // text component for health
     public Text healthText;
     // number of times to flash in invulnerabilty coroutine
-    private int numberFlashes = 3;
+    private int numberFlashes = 1;
 
     public static float secondStore;
     public static float minuteStore;
@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         //enemy collision
         if (collision.gameObject.CompareTag("Enemy") == true)
         {
-            StartCoroutine(cameraShake.Shake(0.75f, 0.15f));
+            StartCoroutine(cameraShake.Shake(1f, 0.1f));
             playerHealth -= 1;
             if (playerHealth <= 0)
             {
