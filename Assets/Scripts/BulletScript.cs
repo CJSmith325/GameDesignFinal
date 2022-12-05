@@ -22,19 +22,18 @@ public class BulletScript : MonoBehaviour
     public float spriteChange;
 
     bool newPress = false;
+
+    public Animator animator;
     // Update is called once per frame
     void Update()
     {
-        channelSlider.value = attackChannelTime;
-   
         if (Input.GetButtonDown("Fire1"))//signals the start of a channel
         {
             newPress = true;
+            animator.SetBool("IsShooting", true);
         }
         if (Input.GetButton("Fire1") && newPress)//building up the channel
         {
-            //spriteChange = attackChannelTime * 51f;
-            spriteRend.color = new Color(255, 0, 0, 255f);
             attackChannelTime += Time.deltaTime * 5;
             if (attackChannelTime > attackChannelMaxTime)
             {
@@ -48,8 +47,8 @@ public class BulletScript : MonoBehaviour
     }
     void Shoot(float power)
     {
+        animator.SetBool("IsShooting", false);
         newPress = false;
-        spriteRend.color = new Color(0, 255, 255, 255f);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * power * 10, ForceMode2D.Impulse);
