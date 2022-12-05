@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // public shake ienumerator object
+    public CameraShake cameraShake;
     // couroutine duration timer
     private float iFrameDuration = 3f;
     // gets sprite renderer of playersprite
@@ -52,6 +54,7 @@ public class PlayerHealth : MonoBehaviour
         //enemy collision
         if (collision.gameObject.CompareTag("Enemy") == true)
         {
+            StartCoroutine(cameraShake.Shake(0.75f, 0.15f));
             playerHealth -= 1;
             if (playerHealth <= 0)
             {
