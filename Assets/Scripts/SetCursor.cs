@@ -6,14 +6,19 @@ public class SetCursor : MonoBehaviour
 {
     public Texture2D crosshair;
 
+    private static bool cursorCheck = false;
+
     void Start()
     {
+        if (cursorCheck != true)
+        {
+            //set the cursor origin to its centre. (default is upper left corner)
+            Vector2 cursorOffset = new Vector2(crosshair.width / 2, crosshair.height / 2);
 
-        //set the cursor origin to its centre. (default is upper left corner)
-        Vector2 cursorOffset = new Vector2(crosshair.width / 2, crosshair.height / 2);
-
-        //Sets the cursor to the Crosshair sprite with given offset 
-        //and automatic switching to hardware default if necessary
-        Cursor.SetCursor(crosshair, cursorOffset, CursorMode.Auto);
+            //Sets the cursor to the Crosshair sprite with given offset 
+            //and automatic switching to hardware default if necessary
+            Cursor.SetCursor(crosshair, cursorOffset, CursorMode.Auto);
+            cursorCheck = true;
+        }
     }
 }
