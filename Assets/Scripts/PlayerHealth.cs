@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
     // number of times to flash in invulnerabilty coroutine
     private int numberFlashes = 1;
 
+    public ParticleSystem particleSysFast;
+    public ParticleSystem particleSysSlow;
+
     public static float secondStore;
     public static float minuteStore;
     public static float hourStore;
@@ -73,6 +76,26 @@ public class PlayerHealth : MonoBehaviour
                 playerHealth += 1;
             Destroy(collision.gameObject);
         }
+        //Checks health to decide on particle system state
+        if (playerHealth == 3)
+        {
+            //stops particle system from playing
+            particleSysFast.Stop();
+            particleSysSlow.Stop();
+        }
+        else if (playerHealth == 2)
+        {
+            //makes particle system play
+            particleSysSlow.Play();
+            particleSysFast.Stop();
+        }
+        else if (playerHealth == 1)
+        {
+            //makes fast particle system play
+            particleSysSlow.Stop();
+            particleSysFast.Play();
+        }
+
     }
 }
 
