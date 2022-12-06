@@ -1796,8 +1796,9 @@ MonoBehaviour:
   attackChannelTime: 0
   channelSlider: {fileID: 123163254}
   bulletForce: 20
+  fireDirection: {x: 0, y: 0}
   bulletDamage: 10
-  spriteRend: {fileID: 880079771}
+  bulletSprite: {fileID: 0}
   spriteChange: 0
   animator: {fileID: 880079772}
 --- !u!114 &245994031
@@ -3222,7 +3223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
