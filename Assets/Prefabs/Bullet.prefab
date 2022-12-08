@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  partsys: {fileID: 0}
   particlePrefab: {fileID: 7766638598749366341, guid: d91906680807d834aaf28ca4807bbbfd, type: 3}
+  enemyHitSound: {fileID: 0}
+  enemyDeathSound: {fileID: 0}
 --- !u!58 &7634351465997739880
 CircleCollider2D:
   m_ObjectHideFlags: 0

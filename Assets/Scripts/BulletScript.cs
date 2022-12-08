@@ -25,6 +25,8 @@ public class BulletScript : MonoBehaviour
     bool newPress = false;
 
     public Animator animator;
+
+    public AudioSource playerShoot;
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +55,7 @@ public class BulletScript : MonoBehaviour
         newPress = false;//preventing an additional chargeup after shooting
 
         //Shooting
+        playerShoot.Play();
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //Summon bullet
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>(); //Set the bullet RB
         rb.AddForce(fireDirection * 20, ForceMode2D.Impulse); //Move the bullet in the correct direction

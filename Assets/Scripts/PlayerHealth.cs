@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public AudioSource playerHitSound;
     // public shake ienumerator object
     public CameraShake cameraShake;
     // couroutine duration timer
@@ -58,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") == true)
         {
             StartCoroutine(cameraShake.Shake(1f, 0.1f));
+            playerHitSound.Play();
             playerHealth -= 1;
             if (playerHealth <= 0)
             {
