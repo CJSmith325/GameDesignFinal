@@ -1320,10 +1320,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The object of the game is to survive as long as possible using your flashlight
-    to illuminate the enemies that can damage you. Holding the fire button will charge
-    your attack for extra damage, but lock your character in place. Use WASD or arrow
-    keys to move and left mouse to shoot.
+  m_text: 'Move with WASD
+
+    Use the Mouse to look around
+
+    Hold left click
+    to charge a shot -
+
+    The longer it''s held, the better.
+
+    Shadows never
+    stop forming, fight to keep them from overwhelming you.
+
+
+    Survive as long
+    as possible.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf14e04e06532104e9d30968a65576c7, type: 2}
   m_sharedMaterial: {fileID: -83540183745226096, guid: bf14e04e06532104e9d30968a65576c7, type: 2}
