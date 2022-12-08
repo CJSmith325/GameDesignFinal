@@ -27,16 +27,23 @@ public class BulletScript : MonoBehaviour
     public Animator animator;
 
     public AudioSource playerShoot;
+
+    Pause pauseScript;
     // Update is called once per frame
+    private void Awake()
+    {
+        pauseScript = FindObjectOfType<Pause>();
+        
+    }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))//signals the start of a channel
+        if (Input.GetButtonDown("Fire1") && !pauseScript.paused)//signals the start of a channel
         {
             newPress = true;
             animator.SetBool("IsShooting", true);
             fireDirection = firePoint.up;
         }
-        if (Input.GetButton("Fire1") && newPress)//building up the channel
+        if (Input.GetButton("Fire1") && newPress && !pauseScript.paused)//building up the channel
         {
             attackChannelTime += Time.deltaTime * 5;
             if (attackChannelTime > attackChannelMaxTime)
@@ -44,7 +51,7 @@ public class BulletScript : MonoBehaviour
                 Shoot(attackChannelTime * 2);
             }
         }
-        if (Input.GetButtonUp("Fire1") && newPress)//releasing without it being full
+        if (Input.GetButtonUp("Fire1") && newPress && !pauseScript.paused)//releasing without it being full
         {
             Shoot(attackChannelTime);
         }

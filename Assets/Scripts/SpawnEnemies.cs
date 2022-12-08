@@ -26,8 +26,6 @@ public class SpawnEnemies : MonoBehaviour
         {
             if (Time.time > nextSpawn)
             {
-                print("Spawning enemy");
-                print(spawnRate);
                 nextSpawn = Time.time + spawnRate;
                 if(spawnRate > 1.1)
                     spawnRate = spawnRate * .95f;
