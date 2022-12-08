@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -17,16 +18,16 @@ public class PlayerHealth : MonoBehaviour
     public int playerHealth = 3;
     public int playerMaxHealth = 3;
     // text component for health
-    public Text healthText;
+    public TextMeshProUGUI healthText;
     // number of times to flash in invulnerabilty coroutine
     private int numberFlashes = 1;
 
     public ParticleSystem particleSysFast;
     public ParticleSystem particleSysSlow;
 
-    public static float secondStore;
-    public static float minuteStore;
-    public static float hourStore;
+    public static int secondStore;
+    public static int minuteStore;
+    public static int hourStore;
     private void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
@@ -63,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
             playerHealth -= 1;
             if (playerHealth <= 0)
             {
-                secondStore = GameTimer.secondsCount;
+                secondStore = Mathf.RoundToInt(GameTimer.secondsCount);
                 minuteStore = GameTimer.minuteCount;
                 hourStore = GameTimer.hourCount;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
