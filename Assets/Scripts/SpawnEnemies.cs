@@ -11,7 +11,7 @@ public class SpawnEnemies : MonoBehaviour
     float randY;
     public int randQuadrant;//used to determine whether they'll spawn from in terms of NESW
     Vector2 spawnPoint;
-    public float spawnRate = 1f;
+    public float spawnRate = 5f;
     float nextSpawn = 0.0f;
     public int SpawnQueue;
 
@@ -26,8 +26,11 @@ public class SpawnEnemies : MonoBehaviour
         {
             if (Time.time > nextSpawn)
             {
+                print("Spawning enemy");
+                print(spawnRate);
                 nextSpawn = Time.time + spawnRate;
-                spawnRate = spawnRate * .95f;
+                if(spawnRate > 1.1)
+                    spawnRate = spawnRate * .95f;
                 SpawnQueue += 1;
             }
             while(SpawnQueue > 0)
